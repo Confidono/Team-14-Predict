@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import datetime as datetime
 
 #Function 1
 def dictionary_of_metrics(items):
@@ -28,7 +29,7 @@ def dictionary_of_metrics(items):
  
     return metric_dict #return result as a dictionary
 
-
+#Function 2
 def five_num_summary(items):
     """This function takes in a list of integers and returns a dictionary of the five number summary"""
     np_list = np.array(items)
@@ -41,6 +42,7 @@ def five_num_summary(items):
     
     return metric_dict
 
+#Function 3
 def date_parser(dates):
     """This function takes a list of strings with date and time then
     it returns a string with only the date
@@ -50,3 +52,65 @@ def date_parser(dates):
         a = dates[i][:10]        
         new_dates.append(a)
     return new_dates
+
+#Function 4
+def extract_municipality_hashtags(df):
+    """This function takes in a pandas dataframe and returns a modified dataframe that includes two new columns
+    that contain information about the municipality and hastag of a tweet"""
+    
+    municipality = []
+    hashtags = []                    #creates two empty lists
+
+    tweets = [i.split(" ") for i in df['Tweets']]   #creates a list from datframe column
+
+    new_munic_list = []
+    new_tag_list = []           #final set of lists that will be added into the dataframe
+
+    for tweet in tweets: # appends the initial set of lists to extract words starting with # and key values of mun dict
+        municipality.append([mun_dict[word] for word in tweet if word in list(mun_dict.keys())])
+        hashtags.append([tag.lower() for tag in tweet if tag.startswith('#')])
+
+    for item in municipality:
+        if item == []: 
+            item = np.nan    #if list is empty, retunr NaN
+        new_munic_list.append(item)
+
+    for tag in hashtags:
+        if tag == []:
+            tag = np.nan
+        new_tag_list.append(tag)
+    
+    df['municipality'] = new_munic_list  #creates two new columns in dataframe with #'s and key values from mun_dict dictionary
+    df['hashtags'] = new_tag_list
+  
+    return df
+
+#Function 5
+def number_of_tweets_per_day(df):
+    """This function calculates the number of tweets posted per day
+    it takes a pandas dataframe as an input"""
+    
+    var_date = pd.to_datetime(df['Date']) #creates a datetime variable from dates column
+    df['Date'] = [i.date() for i in var_date]  
+    by_date = df.groupby('Date').count() #groups dataframe by date and counts number of tweets
+    
+    return by_date
+
+#Function 6
+def word_splitter(df):
+    df['Split Tweets'] = [i.lower().split() for i in df['Tweets']]
+    return df
+
+#Function 7
+def stop_words_remover(df):
+    '''
+    Removes stop words from tweets:
+    Example:
+    Word = Please will be removed from all of the tweets
+    '''
+    #applying lambda expression mapping the stop words values in the stop words dictionary with any stop wods existing in Tweets
+    df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
+
+    return df
+
+
