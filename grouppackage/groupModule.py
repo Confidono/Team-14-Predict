@@ -68,14 +68,14 @@ def extract_municipality_hashtags(df):
             df: A modified dataframe
     """
     municipality = []
-    hashtags = []                    #creates two empty lists
+    hashtags = []     #creates two empty lists
 
     tweets = [i.split(" ") for i in df['Tweets']]   #creates a list from datframe column
 
     new_munic_list = []
-    new_tag_list = []           #final set of lists that will be added into the dataframe
+    new_tag_list = []   #final set of lists that will be added into the dataframe
 
-    for tweet in tweets: # appends the initial set of lists to extract words starting with # and key values of mun dict
+    for tweet in tweets: #appends the initial set of lists to extract words starting with # and key values of mun dict
         municipality.append([mun_dict[word] for word in tweet if word in list(mun_dict.keys())])
         hashtags.append([tag.lower() for tag in tweet if tag.startswith('#')])
 
