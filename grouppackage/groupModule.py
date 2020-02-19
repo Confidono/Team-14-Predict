@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import datetime as datetime
 
+
+
 #Function 1
 def dictionary_of_metrics(items):
 
@@ -67,6 +69,15 @@ def extract_municipality_hashtags(df):
         Returns:
             df: A modified dataframe
     """
+    mun_dict = {
+    '@CityofCTAlerts' : 'Cape Town',
+    '@CityPowerJhb' : 'Johannesburg',
+    '@eThekwiniM' : 'eThekwini' ,
+    '@EMMInfo' : 'Ekurhuleni',
+    '@centlecutility' : 'Mangaung',
+    '@NMBmunicipality' : 'Nelson Mandela Bay',
+    '@CityTshwane' : 'Tshwane'
+                               }
     municipality = []
     hashtags = []     #creates two empty lists
 
