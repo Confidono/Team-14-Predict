@@ -19,6 +19,12 @@ This function takes in a pandas dataframe and returns a modified dataframe that 
 ## Function 5: Number of tweets per day
 This function calculates the number of tweets that were posted per day.
 
+## Function 6: Word Splitter
+This function splits the sentences in a dataframe's column into a list of the separate words. The created lists should be placed in a column named 'Split Tweets' in the original dataframe.
+
+## Function 7: Stop Words
+ This function removes english stop words from a tweet.
+
 
 
 
