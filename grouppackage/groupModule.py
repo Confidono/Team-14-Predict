@@ -4,7 +4,8 @@ import datetime as datetime
 
 #Function 1
 def dictionary_of_metrics(items):
-        """
+
+    """
         Calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
         Params:
             items (array): An array of numerical entries.
@@ -24,7 +25,7 @@ def dictionary_of_metrics(items):
 
 #Function 2
 def five_num_summary(items):
-        """
+    """
         Takes in a list of integers and returns a dictionary of the five number summary.
         Params:
             items(array): An array of numerical entries.
@@ -43,7 +44,7 @@ def five_num_summary(items):
 
 #Function 3
 def date_parser(dates):
-       """
+    """
         Takes as input a list of these datetime strings and returns only the date in 'yyyy-mm-dd' format.
         Params:
             dates(array): datetime strings
@@ -95,18 +96,14 @@ def extract_municipality_hashtags(df):
 
 #Function 5
 def number_of_tweets_per_day(df):
-<<<<<<< HEAD
     """This function calculates the number of tweets posted per day
     it takes a pandas dataframe as an input
-    
-=======
-     """
+
         calculates the number of tweets that were posted per day.
         Params:
             df: A dataframe of tweets.
         Return:
             df: A dataframe with the tweet-count per day.
->>>>>>> 612e2ced52d41cf5689e2d2969d92c07e6d2c583
     """
     
     var_date = pd.to_datetime(df['Date']) #creates a datetime variable from dates column
@@ -132,19 +129,15 @@ def word_splitter(df):
 
 #Function 7
 def stop_words_remover(df):
-<<<<<<< HEAD
     """
     Removes stop words from tweets:
     Example:
     Word = Please will be removed from all of the tweets
-=======
-   """
         Removes english stop words from a tweet.
         Params:
             df: A pandas dataframe.
         Returns:
             df: Modified dataframe
->>>>>>> 612e2ced52d41cf5689e2d2969d92c07e6d2c583
     """
     #applying lambda expression mapping the stop words values in the stop words dictionary with any stop wods existing in Tweets
     df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
