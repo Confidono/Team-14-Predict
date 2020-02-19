@@ -4,7 +4,8 @@ import datetime as datetime
 
 #Function 1
 def dictionary_of_metrics(items):
-        """
+
+    """
         Calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
         Params:
             items (array): An array of numerical entries.
@@ -24,7 +25,7 @@ def dictionary_of_metrics(items):
 
 #Function 2
 def five_num_summary(items):
-        """
+    """
         Takes in a list of integers and returns a dictionary of the five number summary.
         Params:
             items(array): An array of numerical entries.
@@ -43,7 +44,7 @@ def five_num_summary(items):
 
 #Function 3
 def date_parser(dates):
-       """
+    """
         Takes as input a list of these datetime strings and returns only the date in 'yyyy-mm-dd' format.
         Params:
             dates(array): datetime strings
@@ -58,25 +59,30 @@ def date_parser(dates):
 
 #Function 4
 def extract_municipality_hashtags(df):
-    """This function takes in a pandas dataframe and returns a modified dataframe that includes two new columns
-    that contain information about the municipality and hastag of a tweet"""
-    
+    """
+         takes in a pandas dataframe and returns a modified dataframe that includes two new columns that contain information
+         about the municipality and hashtag of the tweet.
+        Params:
+            df: A pandas dataframe
+        Returns:
+            df: A modified dataframe
+    """
     municipality = []
-    hashtags = []                    #creates two empty lists
+    hashtags = []     #creates two empty lists
 
     tweets = [i.split(" ") for i in df['Tweets']]   #creates a list from datframe column
 
     new_munic_list = []
-    new_tag_list = []           #final set of lists that will be added into the dataframe
+    new_tag_list = []   #final set of lists that will be added into the dataframe
 
-    for tweet in tweets: # appends the initial set of lists to extract words starting with # and key values of mun dict
+    for tweet in tweets: #appends the initial set of lists to extract words starting with # and key values of mun dict
         municipality.append([mun_dict[word] for word in tweet if word in list(mun_dict.keys())])
         hashtags.append([tag.lower() for tag in tweet if tag.startswith('#')])
 
     for item in municipality:
         if item == []: 
             item = np.nan    #if list is empty, retunr NaN
-        new_munic_list.append(item)
+        new_munic_list.append(item) 
 
     for tag in hashtags:
         if tag == []:
@@ -91,7 +97,14 @@ def extract_municipality_hashtags(df):
 #Function 5
 def number_of_tweets_per_day(df):
     """This function calculates the number of tweets posted per day
-    it takes a pandas dataframe as an input"""
+    it takes a pandas dataframe as an input
+
+        calculates the number of tweets that were posted per day.
+        Params:
+            df: A dataframe of tweets.
+        Return:
+            df: A dataframe with the tweet-count per day.
+    """
     
     var_date = pd.to_datetime(df['Date']) #creates a datetime variable from dates column
     df['Date'] = [i.date() for i in var_date]  
@@ -100,17 +113,32 @@ def number_of_tweets_per_day(df):
     return by_date
 
 #Function 6
+    
 def word_splitter(df):
+    """
+        Splits the sentences in a dataframe's column into a list of the separate words.
+
+        Params:
+            df: A pandas dataframe.
+
+        Returns:
+            df: The pandas dataframe with an extra column of split tweets.
+    """
     df['Split Tweets'] = [i.lower().split() for i in df['Tweets']]
     return df
 
 #Function 7
 def stop_words_remover(df):
-    '''
+    """
     Removes stop words from tweets:
     Example:
     Word = Please will be removed from all of the tweets
-    '''
+        Removes english stop words from a tweet.
+        Params:
+            df: A pandas dataframe.
+        Returns:
+            df: Modified dataframe
+    """
     #applying lambda expression mapping the stop words values in the stop words dictionary with any stop wods existing in Tweets
     df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
 

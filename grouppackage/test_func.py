@@ -1,5 +1,7 @@
 import unittest
 import groupModule
+import numpy as np
+import pandas as pd
 
 class TestFuncs(unittest.TestCase):
     '''
@@ -16,6 +18,12 @@ class TestFuncs(unittest.TestCase):
     def test_date_parser(self):
         self.assertEqual(groupModule.date_parser(['2019-11-29 12:50:54','2019-11-29 12:46:53','2019-11-29 12:46:10']),['2019-11-29', '2019-11-29', '2019-11-29'] )
         self.assertEqual(groupModule.date_parser(['2020-11-29 12:50:54','2019-11-20 12:46:53','2007-07-07 12:46:10']), ['2020-11-29','2019-11-20','2007-07-07'])
+    
+
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
