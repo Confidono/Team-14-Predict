@@ -4,21 +4,14 @@ import datetime as datetime
 
 #Function 1
 def dictionary_of_metrics(items):
-    """This function calculates the mean, median, variance,standard deviation, min and max
-    of a list argument and returns a dictionary of the results
-
-    Example:
-    list of numbers 
-
-    Returns:
-
-    dictionary_of_metrics(gauteng) == {'mean': 26244.42,
-                                   'median': 24403.5,
-                                   'var': 108160153.17,
-                                   'std': 10400.01,
-                                   'min': 8842.0,
-                                   'max': 39660.0}
+        """
+        Calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
+        Params:
+            items (array): An array of numerical entries.
+        Returns:
+            dict: A dict of the mean, median, variance, standard deviation, minimum and maximum.
     """
+    
     np_list = np.array(items) #create an array of list to use numpy functions on list
     metric_dict = {'mean': np.mean(np_list).round(2),
                    'median': np.median(np_list).round(2),
@@ -31,7 +24,13 @@ def dictionary_of_metrics(items):
 
 #Function 2
 def five_num_summary(items):
-    """This function takes in a list of integers and returns a dictionary of the five number summary"""
+        """
+        Takes in a list of integers and returns a dictionary of the five number summary.
+        Params:
+            items(array): An array of numerical entries.
+        Returns:
+            dict: A dictionary of the five number summary.
+    """
     np_list = np.array(items)
     metric_dict = {'max': np.max(np_list).round(2),
                    'median': round(np.median(np_list), 2),
@@ -44,9 +43,13 @@ def five_num_summary(items):
 
 #Function 3
 def date_parser(dates):
-    """This function takes a list of strings with date and time then
-    it returns a string with only the date
-    """
+       """
+        Takes as input a list of these datetime strings and returns only the date in 'yyyy-mm-dd' format.
+        Params:
+            dates(array): datetime strings
+        Returns: 
+            An array of strings where each element in the returned list contains only the date in the 'yyyy-mm-dd' format.
+    """ 
     new_dates = []
     for i in range(len(dates)):
         a = dates[i][:10]        
