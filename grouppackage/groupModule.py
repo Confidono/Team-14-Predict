@@ -4,21 +4,14 @@ import datetime as datetime
 
 #Function 1
 def dictionary_of_metrics(items):
-    """This function calculates the mean, median, variance,standard deviation, min and max
-    of a list argument and returns a dictionary of the results
-
-    Example:
-    list of numbers 
-
-    Returns:
-
-    dictionary_of_metrics(gauteng) == {'mean': 26244.42,
-                                   'median': 24403.5,
-                                   'var': 108160153.17,
-                                   'std': 10400.01,
-                                   'min': 8842.0,
-                                   'max': 39660.0}
+        """
+        Calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
+        Params:
+            items (array): An array of numerical entries.
+        Returns:
+            dict: A dict of the mean, median, variance, standard deviation, minimum and maximum.
     """
+    
     np_list = np.array(items) #create an array of list to use numpy functions on list
     metric_dict = {'mean': np.mean(np_list).round(2),
                    'median': np.median(np_list).round(2),
@@ -31,7 +24,13 @@ def dictionary_of_metrics(items):
 
 #Function 2
 def five_num_summary(items):
-    """This function takes in a list of integers and returns a dictionary of the five number summary"""
+        """
+        Takes in a list of integers and returns a dictionary of the five number summary.
+        Params:
+            items(array): An array of numerical entries.
+        Returns:
+            dict: A dictionary of the five number summary.
+    """
     np_list = np.array(items)
     metric_dict = {'max': np.max(np_list).round(2),
                    'median': round(np.median(np_list), 2),
@@ -44,9 +43,13 @@ def five_num_summary(items):
 
 #Function 3
 def date_parser(dates):
-    """This function takes a list of strings with date and time then
-    it returns a string with only the date
-    """
+       """
+        Takes as input a list of these datetime strings and returns only the date in 'yyyy-mm-dd' format.
+        Params:
+            dates(array): datetime strings
+        Returns: 
+            An array of strings where each element in the returned list contains only the date in the 'yyyy-mm-dd' format.
+    """ 
     new_dates = []
     for i in range(len(dates)):
         a = dates[i][:10]        
@@ -55,9 +58,14 @@ def date_parser(dates):
 
 #Function 4
 def extract_municipality_hashtags(df):
-    """This function takes in a pandas dataframe and returns a modified dataframe that includes two new columns
-    that contain information about the municipality and hastag of a tweet"""
-    
+    """
+         takes in a pandas dataframe and returns a modified dataframe that includes two new columns that contain information
+         about the municipality and hashtag of the tweet.
+        Params:
+            df: A pandas dataframe
+        Returns:
+            df: A modified dataframe
+    """
     municipality = []
     hashtags = []                    #creates two empty lists
 
@@ -87,9 +95,18 @@ def extract_municipality_hashtags(df):
 
 #Function 5
 def number_of_tweets_per_day(df):
+<<<<<<< HEAD
     """This function calculates the number of tweets posted per day
     it takes a pandas dataframe as an input
     
+=======
+     """
+        calculates the number of tweets that were posted per day.
+        Params:
+            df: A dataframe of tweets.
+        Return:
+            df: A dataframe with the tweet-count per day.
+>>>>>>> 612e2ced52d41cf5689e2d2969d92c07e6d2c583
     """
     
     var_date = pd.to_datetime(df['Date']) #creates a datetime variable from dates column
@@ -99,16 +116,35 @@ def number_of_tweets_per_day(df):
     return by_date
 
 #Function 6
+    
 def word_splitter(df):
+    """
+        Splits the sentences in a dataframe's column into a list of the separate words.
+
+        Params:
+            df: A pandas dataframe.
+
+        Returns:
+            df: The pandas dataframe with an extra column of split tweets.
+    """
     df['Split Tweets'] = [i.lower().split() for i in df['Tweets']]
     return df
 
 #Function 7
 def stop_words_remover(df):
+<<<<<<< HEAD
     """
     Removes stop words from tweets:
     Example:
     Word = Please will be removed from all of the tweets
+=======
+   """
+        Removes english stop words from a tweet.
+        Params:
+            df: A pandas dataframe.
+        Returns:
+            df: Modified dataframe
+>>>>>>> 612e2ced52d41cf5689e2d2969d92c07e6d2c583
     """
     #applying lambda expression mapping the stop words values in the stop words dictionary with any stop wods existing in Tweets
     df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
