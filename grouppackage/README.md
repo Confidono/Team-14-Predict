@@ -7,9 +7,9 @@ of certain values per Province eg mean, median, variance
 'python setup.py sdist'
 
 ## installing package from github
-
+'pip install git+https://github.com/Confidono/Team-14-Predict.git'
 ## updating package from github
-
+'pip install --upgrade git+https://github.com/Confidono/Team-14-Predict.git'
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

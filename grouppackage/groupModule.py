@@ -73,7 +73,7 @@ def extract_municipality_hashtags(df):
     for item in municipality:
         if item == []: 
             item = np.nan    #if list is empty, retunr NaN
-        new_munic_list.append(item)
+        new_munic_list.append(item) 
 
     for tag in hashtags:
         if tag == []:
@@ -88,7 +88,9 @@ def extract_municipality_hashtags(df):
 #Function 5
 def number_of_tweets_per_day(df):
     """This function calculates the number of tweets posted per day
-    it takes a pandas dataframe as an input"""
+    it takes a pandas dataframe as an input
+    
+    """
     
     var_date = pd.to_datetime(df['Date']) #creates a datetime variable from dates column
     df['Date'] = [i.date() for i in var_date]  
@@ -103,11 +105,11 @@ def word_splitter(df):
 
 #Function 7
 def stop_words_remover(df):
-    '''
+    """
     Removes stop words from tweets:
     Example:
     Word = Please will be removed from all of the tweets
-    '''
+    """
     #applying lambda expression mapping the stop words values in the stop words dictionary with any stop wods existing in Tweets
     df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
 
